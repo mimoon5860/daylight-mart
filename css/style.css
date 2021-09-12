@@ -18,6 +18,7 @@ body {
   padding: 10px;
   transition: 0.2s;
   border-radius: 10px;
+  margin-left: 10px;
 }
 .single-product:hover {
   background-color: powderblue;
