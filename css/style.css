@@ -19,10 +19,12 @@ body {
   transition: 0.2s;
   border-radius: 10px;
   margin-left: 10px;
+  background-color: rgba(176, 224, 230, 0.337);
+
 }
 .single-product:hover {
   background-color: powderblue;
-  box-shadow: 0px 0px 15px 0px rgba(65, 65, 65, 0.75);
+  box-shadow: 0px 0px 15px 0px rgb(65, 65, 65);
 }
 .product-image {
   width: 150px;
@@ -37,9 +39,10 @@ body {
   border-radius: 5px;
   margin-right: 30px;
   position: fixed;
+  background-color: white;
 }
 .price-cart {
-  padding-right: 30px;
+  padding-right: 20px;
 }
 
 /* Style for Modal  */
@@ -57,7 +60,6 @@ body {
   opacity: 0;
   transition: visibility 0s, opacity 0,5s;
   visibility: hidden;
-  padding: 10px;
 }
 .modal-active{
   visibility: visible;
