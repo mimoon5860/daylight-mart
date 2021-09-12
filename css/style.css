@@ -1,57 +1,37 @@
+/* for font  */
 body {
   font-family: "Montserrat", sans-serif;
 }
 
-/* Search Box  */
-.search-field {
-  border: none;
-  border-radius: 50px;
-  outline: none;
-  display: flex;
-  margin: 50px 0;
-}
-.search-input{
-  border: none;
-  outline: none;
-}
-.search-box {
-  border: 1px solid rgb(3, 118, 211);
-  border-radius: 5px;
-  margin: auto;
-  margin-top: 10px;
-  border-right: none;
-}
-.search-button {
-  padding: 10px 40px;
-  margin-left: 20px;
-}
-
-
+/* All Products Style  */
 #all-products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* border: 1px solid black; */
   text-align: center;
   width: 100%;
   margin: auto;
   align-items: center;
   justify-content: center;
 }
+
+/* Style for single Product */
 .single-product {
   padding: 10px;
   margin: 10px;
   transition: 0.2s;
+  border-radius: 10px;
 }
 .single-product:hover {
-  box-shadow: 4px 4px 7px gray;
-  border-radius: 10px;
-  border: 1px solid cyan;
+  background-color: powderblue;
+
 }
 .product-image {
   width: 150px;
   height: 150px;
 }
-.cart {
+
+/* Style for Prices and Total */
+.prices {
   width: 350px;
   padding: 10px;
   box-shadow: 10px 10px 20px gray;
@@ -59,7 +39,7 @@ body {
   margin-right: 30px;
   position: fixed;
 }
-.cart-main {
+.price-cart {
   padding-right: 30px;
 }
 
@@ -78,6 +58,7 @@ body {
   opacity: 0;
   transition: visibility 0s, opacity 0,5s;
   visibility: hidden;
+  padding: 10px;
 }
 .modal-active{
   visibility: visible;
@@ -86,7 +67,7 @@ body {
 .single-details-modal{
   background-color: white;
   width: 40%;
-  height: 40%;
+  height: auto;
   align-items: flex-end;
   display: flex;
   border-radius: 10px;
@@ -94,6 +75,7 @@ body {
   flex-direction: column;
 }
 
+/* style for Responsive  */
 @media only screen and (max-width: 768px) {
   #all-products {
     display: grid;
@@ -101,7 +83,6 @@ body {
   }
   .cart {
     width: 300px;
-    /* border: 1px solid green; */
     padding: 10px;
     box-shadow: 10px 10px 20px gray;
     border-radius: 5px;

@@ -1,5 +1,6 @@
+// Load API data 
 const loadProducts = () => {
-  const url = `./data.json`;
+  const url = `https://fakestoreapi.com/products`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => showProducts(data));
@@ -10,33 +11,35 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    const image = product.image;
     const div = document.createElement("div");
-    div.classList.add("product");
-    div.innerHTML = `<div class="single-product">
+    div.innerHTML = `
+    <div class="single-product">
       <div>
-    <img class="product-image" src=${image}></img>
+        <img class="product-image" src=${product.image}></img>
       </div>
       <h3>${product.title}</h3>
-      <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
-      <h3>Rating:${product.rating.rate}<h3>
-      <h3>Count:${product.rating.count}<h3>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="detailsButton()" id="details-btn" class="btn btn-danger">Details</button></div>
+      <p class="text-primary">Category: ${product.category}</p>
+      <h2 class="fw-bold">Price: $${product.price}</h2>
+      <h4>Rating: ${product.rating.rate}<h4>
+      <h4>Count: ${product.rating.count}<h4>
+      <button onclick="addToCart(${product.price})" id="addToCart-btn" class="buy-now btn btn-success">Add to cart</button>
+      <button onclick="detailsButton(${product.id})" id="details-btn" class="btn btn-danger">Details</button>
+    </div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
 };
+
+// Update quantity and call for update price and tax 
 let count = 0;
-const addToCart = (id, price) => {
+const addToCart = (price) => {
   count = count + 1;
   updatePrice("price", price);
-
   updateTaxAndCharge();
   document.getElementById("total-Products").innerText = count;
 };
 
+// update rate of products tax and charges
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   const converted = parseFloat(element);
@@ -83,17 +86,20 @@ const updateTotal = () => {
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
 
+// single Details Modal function 
 const detailsButton = id => {
-  const url = `./single.json`;
+  const url = `https://fakestoreapi.com/products/${id}`;
   console.log(url)
   fetch(url)
     .then((response) => response.json())
     .then((data) => showDetails(data));
 };
+
+// modals data 
 const showDetails = data => {
   const details = document.getElementById('modal');
   details.innerHTML = `
-  <div class="single-details-modal" id="details" style="max-width: 540px;">
+  <div class="single-details-modal" id="details">
         <div class="d-flex align-items-center justify-content-between">
           <img width="180px" src="${data.image}" alt="">
           <div class="ms-3">
@@ -108,6 +114,7 @@ const showDetails = data => {
   document.getElementById('modal').classList.add('modal-active');
 }
 
+// Close Modal function 
 const modalClose = () => {
   document.getElementById('modal').classList.remove('modal-active');
 };

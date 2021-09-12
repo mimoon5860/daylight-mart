@@ -7,6 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DayLight Mart</title>
 
+  <!-- Fav icon  -->
+  <link rel="shortcut icon" href="img/fav-icon.png" type="image/x-icon">
+
   <!-- Bootstrap-5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -33,29 +36,32 @@
 
 
   <main class="main">
-    <div class="search-field">
-      <div class="search-box">
-        <input id="input-field" class="search-input" type="text" />
-        <button type="button" class="btn btn-primary search-button" data-toggle="button" aria-pressed="false"
-          autocomplete="off" id="search-btn" onclick="loadProducts()">
-          Search
-        </button>
-      </div>
+
+    <!-- Search Box  -->
+    <div class="container-fluid w-25">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button onclick="loadProducts()" class="btn btn-outline-success" type="submit">Search</button>
+      </form>
     </div>
 
-    <!-- Details Section  -->
+    <!-- Details Modal Section  -->
     <section id="modal" class="modal-bg">
 
     </section>
 
-
+    <!-- Cart section  -->
     <div class="row">
+
+      <!-- Products Ui section  -->
       <div class="col-md-9 col-lg-9 col-sm-7">
-        <div id="all-products" class="">
+        <div id="all-products">
         </div>
       </div>
-      <div class="col-md-3 col-lg-3 col-sm-5 cart-main">
-        <div class="cart" id="my-cart">
+
+      <!-- Cart Prices and total calculation  -->
+      <div class="col-md-3 col-lg-3 col-sm-5 price-cart">
+        <div class="prices" id="my-cart">
           <table class="table">
             <thead>
               <h1>My-Cart</h1>
