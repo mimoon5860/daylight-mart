@@ -10,20 +10,19 @@ body {
   text-align: center;
   width: 100%;
   margin: auto;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Style for single Product */
 .single-product {
   padding: 10px;
-  margin: 10px;
+  margin: 10px 5px;
   transition: 0.2s;
   border-radius: 10px;
+  min-height: 500px;
 }
 .single-product:hover {
   background-color: powderblue;
-
+  box-shadow: 0px 0px 15px 0px rgba(65, 65, 65, 0.75);
 }
 .product-image {
   width: 150px;
