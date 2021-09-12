@@ -7,6 +7,7 @@ body {
 #all-products {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-gap: 15px;
   text-align: center;
   width: 100%;
   margin: auto;
@@ -15,10 +16,8 @@ body {
 /* Style for single Product */
 .single-product {
   padding: 10px;
-  margin: 10px 5px;
   transition: 0.2s;
   border-radius: 10px;
-  min-height: 500px;
 }
 .single-product:hover {
   background-color: powderblue;
