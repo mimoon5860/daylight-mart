@@ -1,5 +1,5 @@
 const loadProducts = () => {
-  const url = `https://fakestoreapi.com/products`;
+  const url = `./data.json`;
   fetch(url)
     .then((response) => response.json())
     .then((data) => showProducts(data));
@@ -10,7 +10,7 @@ loadProducts();
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    const image = product.images;
+    const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -20,8 +20,10 @@ const showProducts = (products) => {
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
       <h2>Price: $ ${product.price}</h2>
+      <h3>Rating:${product.rating.rate}<h3>
+      <h3>Count:${product.rating.count}<h3>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="detailsButton()" id="details-btn" class="btn btn-danger">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -37,7 +39,7 @@ const addToCart = (id, price) => {
 
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  const converted = parseFloat(element);
   return converted;
 };
 
@@ -46,12 +48,12 @@ const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = Math.round(total);
+  document.getElementById(id).innerText = total.toFixed(2);
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
-  document.getElementById(id).innerText = Math.round(value);
+  document.getElementById(id).innerText = value.toFixed(2);
 };
 
 // update delivery charge and total Tax
@@ -69,6 +71,7 @@ const updateTaxAndCharge = () => {
     setInnerText("delivery-charge", 60);
     setInnerText("total-tax", priceConverted * 0.4);
   }
+  updateTotal()
 };
 
 //grandTotal update function
@@ -76,5 +79,35 @@ const updateTotal = () => {
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
-  document.getElementById("total").innerText = grandTotal;
+  console.log(grandTotal)
+  document.getElementById("total").innerText = grandTotal.toFixed(2);
+};
+
+const detailsButton = id => {
+  const url = `./single.json`;
+  console.log(url)
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => showDetails(data));
+};
+const showDetails = data => {
+  const details = document.getElementById('modal');
+  details.innerHTML = `
+  <div class="single-details-modal" id="details" style="max-width: 540px;">
+        <div class="d-flex align-items-center justify-content-between">
+          <img width="180px" src="${data.image}" alt="">
+          <div class="ms-3">
+            <h5>Name: ${data.title}</h5>
+            <h3>Price: $${data.price}</h3>
+            <p>${data.description}</p>
+          </div>
+        </div>
+        <button onclick="modalClose()" type="button" class="w-25 btn btn-danger">Close</button>
+      </div>
+  `;
+  document.getElementById('modal').classList.add('modal-active');
+}
+
+const modalClose = () => {
+  document.getElementById('modal').classList.remove('modal-active');
 };
