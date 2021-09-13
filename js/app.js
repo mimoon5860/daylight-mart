@@ -91,7 +91,6 @@ const updateTotal = () => {
 // single Details Modal function 
 const detailsButton = id => {
   const url = `https://fakestoreapi.com/products/${id}`;
-  console.log(url)
   fetch(url)
     .then((response) => response.json())
     .then((data) => showDetails(data));
